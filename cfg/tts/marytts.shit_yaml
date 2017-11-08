@@ -1,0 +1,4 @@
+platform: marytts
+language: ru
+host: 'localhost'
+port: 59125

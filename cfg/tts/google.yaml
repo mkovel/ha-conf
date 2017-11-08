@@ -1,0 +1,5 @@
+platform: google
+language: en
+cache: true
+cache_dir: /home/homeassistant/.homeassistant/tts_cache
+time_memory: 300

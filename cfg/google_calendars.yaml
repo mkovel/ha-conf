@@ -1,0 +1,12 @@
+
+- cal_id: !secret google_account
+  entities:
+  - device_id: !secret google_account
+    name: !secret google_account
+    track: true
+
+- cal_id: '#contacts@group.v.calendar.google.com'
+  entities:
+  - device_id: contacts
+    name: Contacts
+    track: true

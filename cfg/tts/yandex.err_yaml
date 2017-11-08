@@ -1,0 +1,8 @@
+platform: yandextts # Определение платформы по работе с компонентом TTS
+name: yandextts # Имя компонента, для использования в последующем
+api_key: !secret yandex_api_key
+language: 'ru-RU' # Язык произносимой фразы – по умолчанию ru
+codec: 'mp3' # Формат генерируемого аудио файла
+voice: 'jane' # Голос диктора
+emotion: 'good'  # Настроение диктора
+speed: '1'  # Скорость речи

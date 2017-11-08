@@ -1,0 +1,17 @@
+bose_mini_ii_soundlink:
+  hide_if_away: false
+  icon:
+  mac: BT_08:DF:1F:43:FD:C0
+  name: Bose Mini II SoundLink
+  picture:
+  track: true
+  vendor: unknown
+
+nexus_5_c:
+  hide_if_away: false
+  icon:
+  mac: BT_F8:A9:D0:AC:24:C1
+  name: Nexus 5 C
+  picture:
+  track: true
+  vendor: unknown

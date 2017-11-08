@@ -1,0 +1,5 @@
+platform: voicerss
+api_key: !secret voicerss_api_key
+language: 'ru-ru'
+codec: mp3
+format: 48khz_16bit_stereo

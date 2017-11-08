@@ -1,0 +1,36 @@
+- alias: 'Alarm'
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.alarm1.state }}'
+  condition: 
+    condition: or
+    conditions:
+      - condition: and
+        conditions:
+        - condition: state
+          entity_id: input_boolean.alarmweekday1
+          state: 'on'
+        - condition: time
+          weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: state
+        entity_id: input_boolean.alarmweekday1
+        state: 'off'
+  action:
+    - service: notify.NOTIFIER_NAME
+      data_template:
+        title: Доброе утро, Дружище! =)
+        message: "Просыпайся, на работу пора! 
+        За окном сейчас {{ states('sensor.owm_temperature')|int }} °C."
+
+    - service: tts.voicerss_say
+      entity_id: media_player.vlcmp
+      data:
+        message: >
+Любезный сударь! 
+Извольте выслушать краткую сводку новостей о погоде. 
+За окном сейчас {{ states('sensor.owm_temperature')|int }} градусов.
