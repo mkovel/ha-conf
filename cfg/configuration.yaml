@@ -19,15 +19,10 @@ introduction:
 
 # Enables the frontend
 frontend:
+  themes: !include_dir_merge_named themes/
 
 # Enables configuration UI
 config:
-
-http:
-  # Secrets are defined in the file secrets.yaml
-  # api_password: !secret http_password
-  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  # base_url: example.duckdns.org:8123
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -41,14 +36,6 @@ updater:
 # Discover some devices automatically
 discovery:
 
-shopping_list:
-
-# Allows you to issue voice commands from the frontend in enabled browsers
-conversation:
-  intents:
-    ShoppingListAddItem:
-      - Add {item} to my shopping list
-
 # Enables support for tracking state changes over time
 history:
 
@@ -61,36 +48,59 @@ map:
 # Track the sun
 sun:
 
-
-# Text to speech
-tts: !include_dir_list tts/
-
 telegram_bot:
   - platform: polling
     api_key: !secret telegram_api_key
     allowed_chat_ids:
       - !secret telegram_chat_id
 
-notify:
-  - name: NOTIFIER_NAME
-    platform: telegram
-    chat_id: !secret telegram_chat_id
+#google:
+#  client_id: !secret google_client_id
+#  client_secret: !secret google_client_secret
 
-google:
-  client_id: !secret google_client_id
-  client_secret: !secret google_client_secret
 
-weather:
-   - platform: openweathermap
-     name: openweather
-     api_key: !secret openweathermap_api_key
-     latitude: !secret home_latitude
-     longitude: !secret home_longitude
-
+http: !include http.yaml
+# Text to speech
+tts: !include_dir_list tts/
 script: !include scripts.yaml
 group: !include groups.yaml
-automation: !include automations.yaml
+automation old: !include_dir_merge_named  automations_old/
+automation: !include alarm.yaml
 media_player: !include media_player.yaml
 input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml
 sensor: !include sensors.yaml
+notify: !include notify.yaml
+weather: !include weather.yaml
+
+
+camera:
+  - platform: local_file
+    name: LogitechWeb
+    file_path: /tmp/motion/lastsnap.jpg
+
+alarm_control_panel:
+  - platform: manual
+    name: Home Alarm
+    code: 1234
+    pending_time: 30
+    armed_home:
+      pending_time: 0
+    triggered:
+      pending_time: 20
+    trigger_time: 4
+
+
+shopping_list:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+  intents:
+    ShoppingListAddItem:
+      - Add {item} to my shopping list
+
+logger:
+  default: info
+  logs:
+    homeassistant.loader: error
+    homeassistant.setup: error

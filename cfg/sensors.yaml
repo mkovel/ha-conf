@@ -1,14 +1,12 @@
 - platform: template
   sensors:
     alarm1:
-      friendly_name: "Время 1"
-      value_template: >
-        {{ states.input_slider.alarmhour1.state | int }}:
-        {% if states.input_slider.alarmminutes1.state|length == 1 %}0{% endif %}
-        {{ states.input_slider.alarmminutes1.state | int }}
+      friendly_name: 'Время1'
+      value_template: '{{ states.input_number.alarmhour1.state | int }}:{{ states.input_number.alarmminutes1.state | int }}'
+
     alarm2:
-      friendly_name: "Время 2"
-      value_template: '{{ states.input_slider.alarmhour2.state | int }}:{% if states.input_slider.alarmminutes2.state|length == 1 %}0{% endif %}{{ states.input_slider.alarmminutes2.state | int }}'
+      friendly_name: 'Время2'
+      value_template: '{{ states.input_number.alarmhour2.state | int }}:{{ states.input_number.alarmminutes2.state | int }}'
 
 - platform: openweathermap
   api_key: !secret openweathermap_api_key

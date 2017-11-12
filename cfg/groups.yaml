@@ -1,32 +1,29 @@
 default_view:
   view: yes
+  icon: mdi:home
   entities:
     - group.Alarm1
     - group.Alarm2
-    - sensor.alarm_time
-    - sensor.owm_cloud_coverage
-    - sensor.owm_condition
-    - sensor.owm_humidity
     - sensor.owm_rain
     - sensor.owm_snow
     - sensor.owm_temperature
     - sensor.owm_wind_speed
-
-AlarmTab:
-  name: Будильники
-  view: yes
-  entities:
-    - group.Alarm1
-    - group.Alarm2
+    - input_boolean.swtheme
+    - camera.LogitechWeb
+#    - sensor.owm_cloud_coverage
+#    - sensor.owm_condition
+#    - sensor.owm_humidity
 
 Alarm1:
   name: Будильник1
+#  view: yes
   entities:
     - sensor.alarm1
     - input_boolean.alarmweekday1
 
 Alarm2:
   name: Будильник2
+#  view: yes
   entities:
     - sensor.alarm2
     - input_boolean.alarmweekday2

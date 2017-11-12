@@ -1,36 +1,21 @@
-- alias: 'Alarm'
+- alias: Darkblue on
   trigger:
-    platform: template
-    value_template: '{{ states.sensor.time.state == states.sensor.alarm1.state }}'
-  condition: 
-    condition: or
-    conditions:
-      - condition: and
-        conditions:
-        - condition: state
-          entity_id: input_boolean.alarmweekday1
-          state: 'on'
-        - condition: time
-          weekday:
-          - mon
-          - tue
-          - wed
-          - thu
-          - fri
-      - condition: state
-        entity_id: input_boolean.alarmweekday1
-        state: 'off'
+  - platform: state
+    entity_id: input_boolean.swtheme
+    from: 'off'
+    to: 'on'
   action:
-    - service: notify.NOTIFIER_NAME
-      data_template:
-        title: Доброе утро, Дружище! =)
-        message: "Просыпайся, на работу пора! 
-        За окном сейчас {{ states('sensor.owm_temperature')|int }} °C."
+  - service: frontend.set_theme
+    data:
+      name: darkblue
 
-    - service: tts.voicerss_say
-      entity_id: media_player.vlcmp
-      data:
-        message: >
-Любезный сударь! 
-Извольте выслушать краткую сводку новостей о погоде. 
-За окном сейчас {{ states('sensor.owm_temperature')|int }} градусов.
+- alias: Darkblue off
+  trigger:
+  - platform: state
+    entity_id: input_boolean.swtheme
+    from: 'on'
+    to: 'off'
+  action:
+  - service: frontend.set_theme
+    data:
+      name: default

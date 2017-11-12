@@ -10,6 +10,7 @@ chmod 600 .ssh/authorized_keys
 sudo apt-get install mc 
 sudo apt-get install htop
 sudo apt-get install bmon
+sudo apt-get install nmon
 
 sudo usermod -aG homeassistant $USER
 

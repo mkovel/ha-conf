@@ -2,3 +2,8 @@ alarmweekday1:
   name: Рабочая неделя
   initial: on 
   icon: mdi:calendar
+
+swtheme:
+  name: Darkblue on/off
+  initial: off
+  icon: mdi:lightbulb
